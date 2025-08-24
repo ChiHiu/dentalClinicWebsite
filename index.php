@@ -65,6 +65,9 @@ if (isset($_POST['submit']) && isset($_SESSION['user_id'])) {
             <a href="#services">services</a>
             <a href="#reviews">reviews</a>
             <a href="#contact">contact</a>
+            <?php if (isset($_SESSION['user_id'])): ?>
+               <a href="profile.php">Profile</a>
+            <?php endif; ?>
          </nav>
 
          <!-- Kiểm tra login -->
