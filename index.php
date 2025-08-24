@@ -160,52 +160,30 @@ if (isset($_POST['submit']) && isset($_SESSION['user_id'])) {
 </section>
 <!-- services section ends -->
 
-<!-- reviews section starts  -->
+<!-- review section starts -->
 <section class="reviews" id="reviews">
-   <h1 class="heading"> Our Clients </h1>
-   <div class="box-container container">
-      <div class="box">
-         <img src="images/Chi-Hieu.jpg" alt="">
-         <p> I couldn’t believe that it was so afordable compared to the alternatives available in the market.</p>
-         <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i>
-         </div>
-         <h3>Chi Hieu</h3>
-         <span>Manager</span>
-      </div>
-      <div class="box">
-         <img src="images/Nguyen-Hoang.jpg" alt="">
-         <p>I love it</p>
-         <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i>
-         </div>
-         <h3>Nguyen Hoang</h3>
-         <span>Student</span>
-      </div>
-      <div class="box">
-         <img src="images/Thien-Bao.jpg" alt="">
-         <p>Very good </p>
-         <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i>
-         </div>
-         <h3>Thien Bao</h3>
-         <span>CEO</span>
-      </div>
-   </div>
+   <h1 class="heading"> reviews</h1>
+   <?php
+   $reviews = mysqli_query($conn, "SELECT * FROM reviews ORDER BY created_at DESC LIMIT 5");
+   if(mysqli_num_rows($reviews) > 0){
+      while($row = mysqli_fetch_assoc($reviews)){
+         echo "<div class='review'>";
+         echo "<strong>".$row['name']."</strong> - <span style='color:gold'>".str_repeat("⭐", $row['rating'])."</span>";
+         if(!empty($row['comment'])){
+            echo "<p>".$row['comment']."</p>";
+         }
+         echo "<small>".$row['created_at']."</small>";
+         echo "</div>";
+      }
+   } else {
+      echo "<p>No reviews yet.</p>";
+   }
+   ?>
+   <a href="review.php" style="display:inline-block; margin-top:10px; background:#28a745; color:#fff; padding:8px 15px; border-radius:5px; text-decoration:none;">Viết đánh giá</a>
 </section>
-<!-- reviews section ends -->
+<!-- review section ends -->
+
+
 
 <!-- doctor section starts -->
 <section class="doctors" id="doctors">
