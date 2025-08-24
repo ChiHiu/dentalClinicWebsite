@@ -160,6 +160,53 @@ if (isset($_POST['submit']) && isset($_SESSION['user_id'])) {
 </section>
 <!-- services section ends -->
 
+<!-- reviews section starts  -->
+<section class="reviews" id="reviews">
+   <h1 class="heading"> Our Clients </h1>
+   <div class="box-container container">
+      <div class="box">
+         <img src="images/Chi-Hieu.jpg" alt="">
+         <p> I couldn’t believe that it was so afordable compared to the alternatives available in the market.</p>
+         <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+         </div>
+         <h3>Chi Hieu</h3>
+         <span>Manager</span>
+      </div>
+      <div class="box">
+         <img src="images/Nguyen-Hoang.jpg" alt="">
+         <p>I love it</p>
+         <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+         </div>
+         <h3>Nguyen Hoang</h3>
+         <span>Student</span>
+      </div>
+      <div class="box">
+         <img src="images/Thien-Bao.jpg" alt="">
+         <p>Very good </p>
+         <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+         </div>
+         <h3>Thien Bao</h3>
+         <span>CEO</span>
+      </div>
+   </div>
+</section>
+<!-- reviews section ends -->
+
 <!-- doctor section starts -->
 <section class="doctors" id="doctors">
 
