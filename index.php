@@ -160,29 +160,6 @@ if (isset($_POST['submit']) && isset($_SESSION['user_id'])) {
 </section>
 <!-- services section ends -->
 
-<!-- review section starts -->
-<section class="reviews" id="reviews">
-   <h1 class="heading"> reviews</h1>
-   <?php
-   $reviews = mysqli_query($conn, "SELECT * FROM reviews ORDER BY created_at DESC LIMIT 5");
-   if(mysqli_num_rows($reviews) > 0){
-      while($row = mysqli_fetch_assoc($reviews)){
-         echo "<div class='review'>";
-         echo "<strong>".$row['name']."</strong> - <span style='color:gold'>".str_repeat("⭐", $row['rating'])."</span>";
-         if(!empty($row['comment'])){
-            echo "<p>".$row['comment']."</p>";
-         }
-         echo "<small>".$row['created_at']."</small>";
-         echo "</div>";
-      }
-   } else {
-      echo "<p>No reviews yet.</p>";
-   }
-   ?>
-   <a href="review.php" style="display:inline-block; margin-top:10px; background:#28a745; color:#fff; padding:8px 15px; border-radius:5px; text-decoration:none;">Viết đánh giá</a>
-</section>
-<!-- review section ends -->
-
 <!-- pricing section starts -->
 <section id="pricing" style="padding:60px 0;background:#f8fafc;">
 
@@ -368,6 +345,29 @@ if (isset($_POST['submit']) && isset($_SESSION['user_id'])) {
    </form>
 </section>
 <!-- contact section ends -->
+
+<!-- review section starts -->
+<section class="reviews" id="reviews">
+   <h1 class="heading"> reviews</h1>
+   <?php
+   $reviews = mysqli_query($conn, "SELECT * FROM reviews ORDER BY created_at DESC LIMIT 5");
+   if(mysqli_num_rows($reviews) > 0){
+      while($row = mysqli_fetch_assoc($reviews)){
+         echo "<div class='review'>";
+         echo "<strong>".$row['name']."</strong> - <span style='color:gold'>".str_repeat("⭐", $row['rating'])."</span>";
+         if(!empty($row['comment'])){
+            echo "<p>".$row['comment']."</p>";
+         }
+         echo "<small>".$row['created_at']."</small>";
+         echo "</div>";
+      }
+   } else {
+      echo "<p>No reviews yet.</p>";
+   }
+   ?>
+   <a href="review.php" style="display:inline-block; margin-top:10px; background:#28a745; color:#fff; padding:8px 15px; border-radius:5px; text-decoration:none;">Viết đánh giá</a>
+</section>
+<!-- review section ends -->
 
 <!-- footer section starts  -->
 <section class="footer">
