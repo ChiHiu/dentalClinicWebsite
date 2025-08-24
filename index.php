@@ -160,6 +160,32 @@ if (isset($_POST['submit']) && isset($_SESSION['user_id'])) {
 </section>
 <!-- services section ends -->
 
+<!-- doctor section starts -->
+<section class="doctors" id="doctors">
+
+    <h1 class="heading"> our <span>DOCTOR</span> </h1>
+
+    <div class="box-container">
+
+        <div class="box" style="text-align:center; padding:20px; box-shadow:0 5px 15px rgba(0,0,0,.1); border-radius:10px; margin:10px; background:#fff;">
+            <img src="images/Chi-Hieu.jpg" alt="Doctor 1" style="width:150px; height:150px; object-fit:cover; border-radius:50%; margin-bottom:10px;">
+            <h3>Dr Chi Hieu</h3>
+            <span>Dental Specialist</span>
+            <p style="margin-top:10px; font-size:14px; color:#555;">Dr. Chi Hieu has 10 years of experience in cosmetic and restorative dentistry.</p>
+        </div>
+
+        <div class="box" style="text-align:center; padding:20px; box-shadow:0 5px 15px rgba(0,0,0,.1); border-radius:10px; margin:10px; background:#fff;">
+            <img src="images/Nguyen-Hoang.jpg" alt="Doctor 2" style="width:150px; height:150px; object-fit:cover; border-radius:50%; margin-bottom:10px;">
+            <h3>Dr. Nguyen Hoang</h3>
+            <span>Orthodontist</span>
+            <p style="margin-top:10px; font-size:14px; color:#555;">Specialized in braces and teeth alignment with over 8 years of expertise.</p>
+        </div>
+
+    </div>
+
+</section>
+<!-- doctor section ends -->
+
 <!-- contact section starts  -->
 <section class="contact" id="contact">
    <h1 class="heading">make appointment</h1>
