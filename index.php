@@ -183,7 +183,129 @@ if (isset($_POST['submit']) && isset($_SESSION['user_id'])) {
 </section>
 <!-- review section ends -->
 
+<!-- pricing section starts -->
+<section id="pricing" style="padding:60px 0;background:#f8fafc;">
 
+  <style>
+    .pricing-inline .heading{
+      text-align:center;font-size:36px;letter-spacing:.5px;margin:0 0 24px;
+    }
+    .pricing-inline .container{max-width:1000px;margin:0 auto;padding:0 16px;}
+    .pricing-inline .price-table-wrap{margin:0 auto;overflow-x:auto;}
+    .pricing-inline .price-table{
+      width:100%;border-collapse:separate;border-spacing:0;background:#fff;
+      border-radius:16px;overflow:hidden;box-shadow:0 12px 30px rgba(2,6,23,.08);
+    }
+    .pricing-inline .price-table th{
+      background:#0ea5e9;color:#fff;text-transform:uppercase;font-weight:600;
+      font-size:14px;letter-spacing:.06em;padding:14px 18px;text-align:left;
+    }
+    .pricing-inline .price-table th.th-right{ text-align:right; }
+    .pricing-inline .price-table td{
+      padding:16px 18px;font-size:16px;color:#1f2937;vertical-align:middle;
+    }
+    .pricing-inline .row-alt{ background:#f9fbff; }
+    .pricing-inline .row-featured{ background:#fff7f7; }
+    .pricing-inline .td-right{ text-align:right; }
+
+    .pricing-inline .sale-badge{
+      display:inline-flex;align-items:center;gap:6px;margin-left:8px;
+      padding:4px 10px;border-radius:999px;background:#ef4444;color:#fff;
+      font-weight:700;font-size:12px;letter-spacing:.3px;
+      box-shadow:0 4px 12px rgba(239,68,68,.25);
+    }
+
+    .pricing-inline .price-stack{
+      display:flex;flex-direction:column;align-items:flex-end;line-height:1.15;
+    }
+    .pricing-inline .price-old{
+      color:#9ca3af;font-weight:700;padding:0 .06em;
+      text-decoration:line-through;text-decoration-color:#ef4444;text-decoration-thickness:2px;
+      background:linear-gradient(#ef4444,#ef4444) center/100% 2px no-repeat;
+    }
+    .pricing-inline .price-new{color:#16a34a;font-weight:800;margin-top:4px;}
+    .pricing-inline .price-book{padding:10px 18px;border-radius:999px;font-size:14px;display:inline-block;}
+    .pricing-inline .price-note{margin-top:12px;text-align:center;color:#64748b;font-size:14px;}
+  </style>
+
+  <div class="pricing-inline">
+    <h1 class="heading">PRICING</h1>
+
+    <div class="container">
+      <div class="price-table-wrap">
+        <table class="price-table">
+          <thead>
+            <tr>
+              <th>Product/Service</th>
+              <th>Description</th>
+              <th class="th-right">Price</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="row-featured">
+              <td>
+                Braces (Orthodontics)
+                <span class="sale-badge"><i class="fas fa-tags"></i> SALE 30%</span>
+              </td>
+              <td>Comprehensive Orthodontic Treatment</td>
+              <td class="td-right">
+                <div class="price-stack">
+                  <span class="price-old">40.000.000 VND</span>
+                  <span class="price-new">28.000.000 VND</span>
+                </div>
+              </td>
+              <td class="td-right">
+                <a href="#contact" class="link-btn price-book" data-service="Braces (Orthodontics)">Book</a>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Teeth Whitening</td>
+              <td>In-Clinic Whitening Session</td>
+              <td class="td-right"><strong>400.000 VND</strong></td>
+              <td class="td-right">
+                <a href="#contact" class="link-btn price-book" data-service="Teeth Whitening">Book</a>
+              </td>
+            </tr>
+
+            <tr class="row-alt">
+              <td>Oral Care Kit</td>
+              <td>Brush + Floss + Mouthwash</td>
+              <td class="td-right"><strong>250.000 VND</strong></td>
+              <td class="td-right">
+                <a href="#contact" class="link-btn price-book" data-service="Oral Care Kit">Book</a>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Root Canal</td>
+              <td>Single-Tooth Therapy</td>
+              <td class="td-right"><strong>999.999 VND</strong></td>
+              <td class="td-right">
+                <a href="#contact" class="link-btn price-book" data-service="Root Canal">Book</a>
+              </td>
+            </tr>
+
+            <tr class="row-alt">
+              <td>Scaling &amp; Polishing</td>
+              <td>Cleaning + Tartar Removal</td>
+              <td class="td-right"><strong>300.000 VND</strong></td>
+              <td class="td-right">
+                <a href="#contact" class="link-btn price-book" data-service="Scaling &amp; Polishing">Book</a>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+        <p class="price-note">*Prices are indicative. Final quote after consultation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- pricing section ends -->
 
 <!-- doctor section starts -->
 <section class="doctors" id="doctors">
