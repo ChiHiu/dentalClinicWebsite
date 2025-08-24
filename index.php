@@ -1,17 +1,20 @@
 <?php
 session_start();
-// Xử lý form
-$message = [];
+require 'config.php';
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit']) && isset($_SESSION['user_id'])) {
     $name   = htmlspecialchars($_POST['name']);
     $email  = htmlspecialchars($_POST['email']);
-    $number = htmlspecialchars($_POST['number']);
+    $phone  = htmlspecialchars($_POST['number']);
     $date   = htmlspecialchars($_POST['date']);
+    $userId = $_SESSION['user_id'];
 
-    // Ở đây bạn có thể thêm code lưu DB hoặc gửi mail
+    $stmt = $conn->prepare("INSERT INTO appointments (user_id, name, email, phone, appointment_date) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("issss", $userId, $name, $email, $phone, $date);
+    $stmt->execute();
+
     $message[] = "Cảm ơn <b>$name</b>, bạn đã đặt lịch hẹn vào <b>$date</b>. 
-                  Chúng tôi sẽ liên hệ qua email <b>$email</b> hoặc số điện thoại <b>$number</b>.";
+                  Chúng tôi sẽ liên hệ qua email <b>$email</b> hoặc số điện thoại <b>$phone</b>.";
 }
 ?>
 <!DOCTYPE html>
@@ -63,17 +66,23 @@ if (isset($_POST['submit'])) {
          </nav>
 
          <!-- Kiểm tra login -->
-         <?php if (isset($_SESSION['user_email'])): ?>
-            <!-- Hiển thị Xin chào giống nút -->
-            <a href="#" class="link-btn disabled" style="pointer-events:none;">
-               Xin chào, <?php echo htmlspecialchars($_SESSION['user_email']); ?>
-            </a>
-            <a href="logout.php" class="link-btn">Logout</a>
-         <?php else: ?>
-            <a href="#contact" class="link-btn">make appointment</a>
-            <a href="login.php" class="link-btn">Login</a>
-            <a href="register.php" class="link-btn">Sign Up</a> 
-         <?php endif; ?>
+         <div class="text-right">
+            <?php if (isset($_SESSION['user_email'])): ?>
+               <div>
+                  <a href="view_appointments.php" class="link-btn">My Appointments</a>
+                  <a href="logout.php" class="link-btn">Logout</a>
+               </div>
+               <div style="margin-top:5px; font-size:14px; color:#333;">
+                  Xin chào, <b><?php echo htmlspecialchars($_SESSION['user_email']); ?></b>
+               </div>
+            <?php else: ?>
+               <div>
+                  <a href="#contact" class="link-btn">Make Appointment</a>
+                  <a href="login.php" class="link-btn">Login</a>
+                  <a href="register.php" class="link-btn">Sign Up</a>
+               </div>
+            <?php endif; ?>
+         </div>
 
          <!-- Mobile menu button -->
          <div id="menu-btn" class="fas fa-bars"></div>
@@ -165,9 +174,19 @@ if (isset($_POST['submit'])) {
       <span>Enter your email :</span>
       <input type="email" name="email" placeholder="Enter your email" class="box" required>
       <span>Enter your number :</span>
+      <span>Enter your number :</span>
+      <input type="tel" 
+             name="number" 
+             placeholder="Enter your number" 
+             class="box" 
+             required 
+             pattern="[0-9]{10}" 
+             maxlength="10"
+             title="Phone number must be exactly 10 digits (0-9)">
+
       <input type="number" name="number" placeholder="Enter your number" class="box" required>
       <span>Enter appointment date :</span>
-      <input type="datetime-local" name="date" class="box" required>
+      <input type="datetime-local" name="date" class="box" required min="<?php echo date('Y-m-d\TH:i'); ?>">
       <input type="submit" value="make appointment" name="submit" class="link-btn">
    </form>
 </section>
