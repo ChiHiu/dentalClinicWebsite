@@ -6,16 +6,19 @@ if (isset($_POST['submit']) && isset($_SESSION['user_id'])) {
     $name   = htmlspecialchars($_POST['name']);
     $email  = htmlspecialchars($_POST['email']);
     $phone  = htmlspecialchars($_POST['number']);
+    $service= htmlspecialchars($_POST['service']);
     $date   = htmlspecialchars($_POST['date']);
     $userId = $_SESSION['user_id'];
 
-    $stmt = $conn->prepare("INSERT INTO appointments (user_id, name, email, phone, appointment_date) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("issss", $userId, $name, $email, $phone, $date);
+    $stmt = $conn->prepare("INSERT INTO appointments (user_id, name, email, phone, service, appointment_date) 
+                            VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("isssss", $userId, $name, $email, $phone, $service, $date);
     $stmt->execute();
 
-    $message[] = "Cảm ơn <b>$name</b>, bạn đã đặt lịch hẹn vào <b>$date</b>. 
+    $message[] = "Cảm ơn <b>$name</b>, bạn đã đặt lịch hẹn <b>$service</b> vào <b>$date</b>. 
                   Chúng tôi sẽ liên hệ qua email <b>$email</b> hoặc số điện thoại <b>$phone</b>.";
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +51,6 @@ if (isset($_POST['submit']) && isset($_SESSION['user_id'])) {
 <body>
 
 <!-- header section starts  -->
-
 <header class="header fixed-top">
    <div class="container">
       <div class="row align-items-center justify-content-between">
@@ -89,7 +91,6 @@ if (isset($_POST['submit']) && isset($_SESSION['user_id'])) {
       </div>
    </div>
 </header>
-
 
 <!-- home section starts  -->
 <section class="home" id="home">
@@ -174,23 +175,22 @@ if (isset($_POST['submit']) && isset($_SESSION['user_id'])) {
       <span>Enter your email :</span>
       <input type="email" name="email" placeholder="Enter your email" class="box" required>
       <span>Enter your number :</span>
-      <span>Enter your number :</span>
-      <input type="tel" 
-             name="number" 
-             placeholder="Enter your number" 
-             class="box" 
-             required 
-             pattern="[0-9]{10}" 
-             maxlength="10"
-             title="Phone number must be exactly 10 digits (0-9)">
-
-      <input type="number" name="number" placeholder="Enter your number" class="box" required>
+      <input type="text" name="number" placeholder="Enter your number" class="box" pattern="[0-9]{10}" title="Phone number must be 10 digits" required>
+      <span>Select Service :</span>
+      <select name="service" class="box" required>
+         <option value="">-- Select a service --</option>
+         <option value="Alignment Specialist">Alignment Specialist</option>
+         <option value="Cosmetic Dentistry">Cosmetic Dentistry</option>
+         <option value="Oral Hygiene Experts">Oral Hygiene Experts</option>
+         <option value="Root Canal Specialist">Root Canal Specialist</option>
+         <option value="Live Dental Advisory">Live Dental Advisory</option>
+         <option value="Cavity Inspection">Cavity Inspection</option>
+      </select>
       <span>Enter appointment date :</span>
-      <input type="datetime-local" name="date" class="box" required min="<?php echo date('Y-m-d\TH:i'); ?>">
+      <input type="datetime-local" name="date" class="box" min="<?php echo date('Y-m-d\TH:i'); ?>" required>
       <input type="submit" value="make appointment" name="submit" class="link-btn">
    </form>
 </section>
-
 <!-- contact section ends -->
 
 <!-- footer section starts  -->

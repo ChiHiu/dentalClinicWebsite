@@ -9,6 +9,9 @@ if (isset($_POST['register'])) {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
     $confirm = trim($_POST['confirm']);
+    $name = trim($_POST['name']);
+    $phone = trim($_POST['phone']);
+
 
     // Kiểm tra mật khẩu trùng khớp
     if ($password !== $confirm) {
@@ -27,10 +30,10 @@ if (isset($_POST['register'])) {
             // Hash mật khẩu
             $hash = password_hash($password, PASSWORD_DEFAULT);
 
-            $sql = "INSERT INTO users (email, password) VALUES (?, ?)";
+            $sql = "INSERT INTO users (name, email, phone, password) VALUES (?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ss", $email, $hash);
-
+            $stmt->bind_param("ssss", $name, $email, $phone, $hash);
+            
             if ($stmt->execute()) {
                 $success = "Đăng ký thành công! Bạn có thể đăng nhập ngay.";
             } else {
@@ -109,28 +112,6 @@ if (isset($_POST['register'])) {
    </div>
 </header>
 
-<header class="header fixed-top">
-   <div class="container">
-      <div class="row align-items-center justify-content-between">
-         <a href="#home" class="logo">dental<span>Clinic.</span></a>
-         <nav class="nav">
-            <a href="#home">home</a>
-            <a href="#about">about</a>
-            <a href="#services">services</a>
-            <a href="#reviews">reviews</a>
-            <a href="#contact">contact</a>
-         </nav>
-         <div>
-            <a href="login.php" class="link-btn">sign in</a>
-            <a href="#contact" class="link-btn">make appointment</a>
-         </div>
-         <div id="menu-btn" class="fas fa-bars"></div>
-      </div>
-   </div>
-</header>
-
-
-
 <div class="register-container">
    <div class="register-box">
       <h3>Tạo tài khoản</h3>
@@ -139,6 +120,14 @@ if (isset($_POST['register'])) {
          if ($success) echo "<div class='success-msg'>$success</div>";
       ?>
       <form method="post" action="">
+         <div class="form-group">
+            <label>Họ và tên</label>
+            <input type="text" name="name" class="form-control" required>
+         </div>
+         <div class="form-group">
+            <label>Số điện thoại</label>
+            <input type="text" name="phone" class="form-control" pattern="[0-9]{10}" title="Số điện thoại phải có 10 chữ số" required>
+         </div>
          <div class="form-group">
             <label>Email</label>
             <input type="email" name="email" class="form-control" required>
