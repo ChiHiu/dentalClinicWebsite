@@ -347,25 +347,25 @@ if (isset($_POST['submit']) && isset($_SESSION['user_id'])) {
 <!-- contact section ends -->
 
 <!-- review section starts -->
-<section class="reviews" id="reviews">
-   <h1 class="heading"> reviews</h1>
+<section class="reviews" id="reviews" style="text-align:center; margin:30px auto; width:80%; max-width:700px;">
+   <h1 class="heading" style="font-size:36px; font-weight:bold; color:#0056a3; margin-bottom:20px;">Reviews</h1>
    <?php
    $reviews = mysqli_query($conn, "SELECT * FROM reviews ORDER BY created_at DESC LIMIT 5");
    if(mysqli_num_rows($reviews) > 0){
       while($row = mysqli_fetch_assoc($reviews)){
-         echo "<div class='review'>";
-         echo "<strong>".$row['name']."</strong> - <span style='color:gold'>".str_repeat("⭐", $row['rating'])."</span>";
+         echo "<div class='review' style='background:#fff; margin:15px auto; padding:18px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.15); font-size:20px; text-align:left;'>";
+         echo "<strong style='font-size:22px; color:#333;'>".$row['name']."</strong> - <span style='color:gold; font-size:22px;'>".str_repeat("⭐", $row['rating'])."</span>";
          if(!empty($row['comment'])){
-            echo "<p>".$row['comment']."</p>";
+            echo "<p style='font-size:18px; margin:10px 0; color:#555;'>".$row['comment']."</p>";
          }
-         echo "<small>".$row['created_at']."</small>";
+         echo "<small style='font-size:16px; color:#888;'>".$row['created_at']."</small>";
          echo "</div>";
       }
    } else {
-      echo "<p>No reviews yet.</p>";
+      echo "<p style='font-size:18px;'>No reviews yet.</p>";
    }
    ?>
-   <a href="review.php" style="display:inline-block; margin-top:10px; background:#28a745; color:#fff; padding:8px 15px; border-radius:5px; text-decoration:none;">Viết đánh giá</a>
+   <a href="review.php" style="display:inline-block; margin-top:15px; background:#28a745; color:#fff; padding:10px 18px; border-radius:6px; text-decoration:none; font-size:18px;">Viết đánh giá</a>
 </section>
 <!-- review section ends -->
 
